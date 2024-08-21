@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db_djfull',
         'HOST': 'localhost',
         'USER': 'debs',
-        'PASSWORD': 'umg123',
+        'PASSWORD': 'umg12345',
         'PORT': 5435
         
     }
