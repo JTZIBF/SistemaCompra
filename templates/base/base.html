@@ -21,6 +21,9 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+   <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
+
 </head>
 
 <body id="page-top" class="bg-gradient-primary">
@@ -32,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'bases:home' %}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -44,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{% url 'bases:home' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -54,7 +57,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Opciones de Menú
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -62,13 +65,19 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Catálogos</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Catálogos de Inventario</h6>
+                        <a class="collapse-item" href="{% url 'inv:categoria_list' %}">Categorias</a>
+                        <a class="collapse-item" href="{% url 'inv:subcategoria_list' %}">Sub Categorias</a>
+                        <a class="collapse-item" href="{% url 'inv:marca_list' %}">Marca</a>
+                        <a class="collapse-item" href="{% url 'inv:um_list' %}">Unidad Medida</a>
+                        <a class="collapse-item" href="{% url 'inv:producto_list' %}">Producto</a>
+
+                        <h6 class="collapse-header">Catálogos de Compras:</h6>
+                        <a class="collapse-item" href="{% url 'cmp:proveedor_list' %}">Proveedores</a>
                     </div>
                 </div>
             </li>
@@ -325,12 +334,10 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
+                                <img class="img-profile rounded-circle" src="{% static 'base/img/transparent-python-python-programming-language-python-coding-p-creative-representation-of-python-programming-lang65a66a5fc42fb1.2160033317054050238036.png' %}">
+                              </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -365,7 +372,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">PROYECTO BD </h1>
 
                 </div>
                 {% endblock page_content %}
@@ -417,6 +424,8 @@
         </div>
     </div>
 
+    <div class="modal fade" id="popup"></div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -426,3 +435,35 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js'%}"></script>
+    <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    
+    {% block js_page %} {% endblock %}
+
+    {% block control_modal%}
+    <script>
+    function abrir_modal(url)
+    {
+      $("#popup").load(url, function(){
+        $(this).modal({
+          backdrop:'static',
+          keyboard: false
+        })
+        $(this).modal('show');
+      });
+      return false;
+    }
+
+    function cerrar_modal()
+    {
+      $('#popup').modal('hide');
+      return false;
+    }
+  </script>
+  {% endblock%}
+<body>
+
+</html>
+    
