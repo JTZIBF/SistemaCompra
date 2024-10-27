@@ -1,6 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 
-from .views import ProveedorView,ProveedorNew, ProveedorEdit, proveedorInactivar
+from .views import ProveedorView, ProveedorNew, ProveedorEdit, proveedorInactivar
 
 urlpatterns = [
     path('proveedores/',ProveedorView.as_view(), name="proveedor_list"),
