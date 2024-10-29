@@ -37,6 +37,8 @@ class CategoriaNew(SuccessMessageMixin,SinPrivilegios,\
     def form_valid(self, form):
         form.instance.uc = self.request.user
         return super().form_valid(form)
+    
+    
 
 
 class CategoriaEdit(SuccessMessageMixin,SinPrivilegios, \

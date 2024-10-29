@@ -36,6 +36,8 @@ class ProveedorNew(SuccessMessageMixin, SinPrivilegios,\
         form.instance.uc = self.request.user
         #print(self.request.user.id)
         return super().form_valid(form)
+    
+    
 
 class ProveedorEdit(SuccessMessageMixin, SinPrivilegios,\
                    generic.UpdateView):
