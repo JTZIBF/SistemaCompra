@@ -7,7 +7,7 @@ body.receipt .sheet { width: 58mm;/* height: 100mm*/ } /* change height as you l
 
 @media print and (max-width: 10cm) { }
 @page { margin: 15; }
-@media print {max-width: 10cm;}
+@media print{ max-width: 10cm;}
 @media screen {
 body { background: #e0e0e0 }
 .sheet {
